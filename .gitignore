@@ -1,5 +1,4 @@
 Makefile
-/bin*
 /.vscode
 /.vs
 *.sln
@@ -7,7 +6,6 @@ Makefile
 *.user
 *.filters
 *.vcxproj
-/Build/bin
 
 *.exe
 *.o

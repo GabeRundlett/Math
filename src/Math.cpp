@@ -99,29 +99,27 @@ static constexpr double PI = 3.141592653589793238,
 		return function(x);                              \
 	return function(x) / -function(-x)
 
-namespace Coel {
-	namespace Math {
-		constexpr static inline float internal_trig_fast(float x)
-		{
-			x = FMOD_HALF_PI(x);
-			const float xSQ = x * x;
-			return x * (1.f + xSQ * ((float)COEL_MATH_ONE_OVER_3F + xSQ * ((float)COEL_MATH_ONE_OVER_5F + xSQ * (float)COEL_MATH_ONE_OVER_7F)));
-		}
+namespace Math {
+	constexpr static inline float internal_trig_fast(float x)
+	{
+		x = FMOD_HALF_PI(x);
+		const float xSQ = x * x;
+		return x * (1.f + xSQ * ((float)COEL_MATH_ONE_OVER_3F + xSQ * ((float)COEL_MATH_ONE_OVER_5F + xSQ * (float)COEL_MATH_ONE_OVER_7F)));
+	}
 
-		constexpr static inline double internal_trig(double x)
-		{
-			x = DMOD_HALF_PI(x);
-			const double xSQ = x * x;
-			return x * (1.0 + xSQ * (COEL_MATH_ONE_OVER_3F + xSQ * (COEL_MATH_ONE_OVER_5F + xSQ * (COEL_MATH_ONE_OVER_7F + xSQ * (COEL_MATH_ONE_OVER_9F + xSQ * (COEL_MATH_ONE_OVER_11F + xSQ * (COEL_MATH_ONE_OVER_13F + xSQ * (COEL_MATH_ONE_OVER_15F + xSQ * COEL_MATH_ONE_OVER_17F))))))));
-		}
+	constexpr static inline double internal_trig(double x)
+	{
+		x = DMOD_HALF_PI(x);
+		const double xSQ = x * x;
+		return x * (1.0 + xSQ * (COEL_MATH_ONE_OVER_3F + xSQ * (COEL_MATH_ONE_OVER_5F + xSQ * (COEL_MATH_ONE_OVER_7F + xSQ * (COEL_MATH_ONE_OVER_9F + xSQ * (COEL_MATH_ONE_OVER_11F + xSQ * (COEL_MATH_ONE_OVER_13F + xSQ * (COEL_MATH_ONE_OVER_15F + xSQ * COEL_MATH_ONE_OVER_17F))))))));
+	}
 
-		double sin(double x) { SINE_IMPL_SWITCH(internal_trig, DMOD_PI, DMOD_TAU); }
-		float sin(float x) { SINE_IMPL_SWITCH(internal_trig_fast, FMOD_PI, FMOD_TAU); }
+	double sin(double x) { SINE_IMPL_SWITCH(internal_trig, DMOD_PI, DMOD_TAU); }
+	float sin(float x) { SINE_IMPL_SWITCH(internal_trig_fast, FMOD_PI, FMOD_TAU); }
 
-		double cos(double x) { COSINE_IMPL_SWITCH(internal_trig, DMOD_PI, DMOD_TAU); }
-		float cos(float x) { COSINE_IMPL_SWITCH(internal_trig_fast, FMOD_PI, FMOD_TAU); }
+	double cos(double x) { COSINE_IMPL_SWITCH(internal_trig, DMOD_PI, DMOD_TAU); }
+	float cos(float x) { COSINE_IMPL_SWITCH(internal_trig_fast, FMOD_PI, FMOD_TAU); }
 
-		double tan(double x) { TANGENT_IMPL_SWITCH(internal_trig, DMOD_PI, DMOD_TAU); }
-		float tan(float x) { TANGENT_IMPL_SWITCH(internal_trig_fast, FMOD_PI, FMOD_TAU); }
-	} // namespace Math
-} // namespace Coel
+	double tan(double x) { TANGENT_IMPL_SWITCH(internal_trig, DMOD_PI, DMOD_TAU); }
+	float tan(float x) { TANGENT_IMPL_SWITCH(internal_trig_fast, FMOD_PI, FMOD_TAU); }
+} // namespace Math
