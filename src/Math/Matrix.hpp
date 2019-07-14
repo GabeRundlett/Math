@@ -1,7 +1,7 @@
 #pragma once
-#include "Vector.hpp"
+#include "vector.hpp"
 
-namespace Math {
+namespace math {
 template <typename T, int Rows, int Cols> struct Matrix;
 
 template <typename T> struct Matrix<T, 2, 2> {
@@ -41,4 +41,4 @@ template <typename T> struct Matrix<T, 4, 4> {
     constexpr static Matrix<T, 4, 4> rotation(float angle, const Vector<T, 3> axis);
     constexpr static Matrix<T, 4, 4> scalar(const Vector<T, 3> factor);
 };
-} // namespace Math
+} // namespace math

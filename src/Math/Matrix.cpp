@@ -1,7 +1,7 @@
-#include "Matrix.hpp"
-#include "Math.hpp"
+#include "matrix.hpp"
+#include "math.hpp"
 
-namespace Math {
+namespace math {
 ////////////////////////////////////
 //                                //
 //            Matrix2x2           //
@@ -98,4 +98,4 @@ template <typename T> constexpr Matrix<T, 4, 4> Matrix<T, 4, 4>::scalar(const Ve
 template struct Matrix<float, 2, 2>;
 template struct Matrix<float, 3, 3>;
 template struct Matrix<float, 4, 4>;
-} // namespace Math
+} // namespace math

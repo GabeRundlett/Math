@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Math {
+namespace math {
 template <typename T, int N> struct Complex;
 
 template <typename T> struct Complex<T, 2> {
@@ -29,4 +29,4 @@ template <typename T> struct Complex<T, 4> {
     Complex<T, 4> operator/(const Complex<T, 4> &c);
     T &operator[](int index) const;
 };
-} // namespace Math
+} // namespace math

@@ -1,8 +1,8 @@
-project "Math"
+project "math"
 	kind "StaticLib"
 	language "C++"
-	targetdir("%{wks.location}/Build/bin/" .. outputdir .. "/%{prj.name}")
-	objdir("%{wks.location}/Build/bin/intermediates/" .. outputdir .. "/%{prj.name}")
+	targetdir("%{wks.location}/build/bin/" .. outputdir .. "/%{prj.name}")
+	objdir("%{wks.location}/build/bin/intermediates/" .. outputdir .. "/%{prj.name}")
 	files { "src/**.hpp", "src/**.cpp" }
 	includedirs { "%{prj.location}/src" }
 	warnings "Extra"
