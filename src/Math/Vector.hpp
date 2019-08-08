@@ -12,10 +12,10 @@ template <typename T> struct Vector<T, 2> {
     constexpr Vector<T, 2> &operator-=(const Vector<T, 2> &v);
     constexpr Vector<T, 2> &operator*=(const T fac);
     constexpr Vector<T, 2> &operator/=(const T fac);
-    constexpr Vector<T, 2> operator+(const Vector<T, 2> &v);
-    constexpr Vector<T, 2> operator-(const Vector<T, 2> &v);
-    constexpr Vector<T, 2> operator*(const T fac);
-    constexpr Vector<T, 2> operator/(const T fac);
+    constexpr Vector<T, 2> operator+(const Vector<T, 2> &v) const;
+    constexpr Vector<T, 2> operator-(const Vector<T, 2> &v) const;
+    constexpr Vector<T, 2> operator*(const T fac) const;
+    constexpr Vector<T, 2> operator/(const T fac) const;
     constexpr T &operator[](int index) const;
 };
 
@@ -26,10 +26,10 @@ template <typename T> struct Vector<T, 3> {
     constexpr Vector<T, 3> &operator-=(const Vector<T, 3> &v);
     constexpr Vector<T, 3> &operator*=(const T fac);
     constexpr Vector<T, 3> &operator/=(const T fac);
-    constexpr Vector<T, 3> operator+(const Vector<T, 3> &v);
-    constexpr Vector<T, 3> operator-(const Vector<T, 3> &v);
-    constexpr Vector<T, 3> operator*(const T fac);
-    constexpr Vector<T, 3> operator/(const T fac);
+    constexpr Vector<T, 3> operator+(const Vector<T, 3> &v) const;
+    constexpr Vector<T, 3> operator-(const Vector<T, 3> &v) const;
+    constexpr Vector<T, 3> operator*(const T fac) const;
+    constexpr Vector<T, 3> operator/(const T fac) const;
     constexpr T &operator[](int index) const;
 };
 
@@ -40,10 +40,10 @@ template <typename T> struct Vector<T, 4> {
     constexpr Vector<T, 4> &operator-=(const Vector<T, 4> &v);
     constexpr Vector<T, 4> &operator*=(const T fac);
     constexpr Vector<T, 4> &operator/=(const T fac);
-    constexpr Vector<T, 4> operator+(const Vector<T, 4> &v);
-    constexpr Vector<T, 4> operator-(const Vector<T, 4> &v);
-    constexpr Vector<T, 4> operator*(const T fac);
-    constexpr Vector<T, 4> operator/(const T fac);
+    constexpr Vector<T, 4> operator+(const Vector<T, 4> &v) const;
+    constexpr Vector<T, 4> operator-(const Vector<T, 4> &v) const;
+    constexpr Vector<T, 4> operator*(const T fac) const;
+    constexpr Vector<T, 4> operator/(const T fac) const;
     constexpr T &operator[](int index) const;
 };
 

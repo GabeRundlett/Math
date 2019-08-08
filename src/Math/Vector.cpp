@@ -31,10 +31,10 @@ template <typename T> constexpr Vector<T, 2> &Vector<T, 2>::operator/=(const T f
     y /= fac;
     return *this;
 }
-template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator+(const Vector<T, 2> &v) { return {x + v.x, y + v.y}; }
-template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator-(const Vector<T, 2> &v) { return {x - v.x, y - v.y}; }
-template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator*(const T fac) { return {x * fac, y * fac}; }
-template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator/(const T fac) { return {x / fac, y / fac}; }
+template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator+(const Vector<T, 2> &v) const { return {x + v.x, y + v.y}; }
+template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator-(const Vector<T, 2> &v) const { return {x - v.x, y - v.y}; }
+template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator*(const T fac) const { return {x * fac, y * fac}; }
+template <typename T> constexpr Vector<T, 2> Vector<T, 2>::operator/(const T fac) const { return {x / fac, y / fac}; }
 template <typename T> constexpr T &Vector<T, 2>::operator[](int index) const { return *((T *)this + index); }
 ////////////////////////////////////
 //                                //
@@ -65,14 +65,14 @@ template <typename T> constexpr Vector<T, 3> &Vector<T, 3>::operator/=(const T f
     z /= fac;
     return *this;
 }
-template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator+(const Vector<T, 3> &v) {
+template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator+(const Vector<T, 3> &v) const {
     return {x + v.x, y + v.y, z + v.z};
 }
-template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator-(const Vector<T, 3> &v) {
+template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator-(const Vector<T, 3> &v) const {
     return {x - v.x, y - v.y, z - v.z};
 }
-template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator*(const T fac) { return {x * fac, y * fac, z * fac}; }
-template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator/(const T fac) { return {x / fac, y / fac, z / fac}; }
+template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator*(const T fac) const { return {x * fac, y * fac, z * fac}; }
+template <typename T> constexpr Vector<T, 3> Vector<T, 3>::operator/(const T fac) const { return {x / fac, y / fac, z / fac}; }
 template <typename T> constexpr T &Vector<T, 3>::operator[](int index) const { return *((T *)this + index); }
 ////////////////////////////////////
 //                                //
@@ -107,16 +107,16 @@ template <typename T> constexpr Vector<T, 4> &Vector<T, 4>::operator/=(const T f
     w /= fac;
     return *this;
 }
-template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator+(const Vector<T, 4> &v) {
+template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator+(const Vector<T, 4> &v) const {
     return {x + v.x, y + v.y, z + v.z, w + v.w};
 }
-template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator-(const Vector<T, 4> &v) {
+template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator-(const Vector<T, 4> &v) const {
     return {x - v.x, y - v.y, z - v.z, w - v.w};
 }
-template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator*(const T fac) {
+template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator*(const T fac) const {
     return {x * fac, y * fac, z * fac, w * fac};
 }
-template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator/(const T fac) {
+template <typename T> constexpr Vector<T, 4> Vector<T, 4>::operator/(const T fac) const {
     return {x / fac, y / fac, z / fac, w / fac};
 }
 template <typename T> constexpr T &Vector<T, 4>::operator[](int index) const { return *((T *)this + index); }
