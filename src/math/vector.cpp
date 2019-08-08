@@ -1,14 +1,17 @@
-#include "Vector.hpp"
+#include "vector.hpp"
 #include <math.h>
 
-namespace Math {
+namespace math {
 ////////////////////////////////////
 //                                //
 //             Vector2            //
 //                                //
 ////////////////////////////////////
+template <typename T> constexpr float Vector<T, 2>::length(const Vector<T, 2> &v) {
+    return sqrtf(static_cast<float>(v.x * v.x + v.y * v.y));
+}
 template <typename T> constexpr Vector<T, 2> Vector<T, 2>::normalize(const Vector<T, 2> &v) {
-    float length = sqrtf(v.x * v.x + v.y * v.y);
+    float length = sqrtf(static_cast<float>(v.x * v.x + v.y * v.y));
     return {v.x / length, v.y / length};
 }
 template <typename T> constexpr Vector<T, 2> &Vector<T, 2>::operator+=(const Vector<T, 2> &v) {
@@ -128,4 +131,4 @@ template struct Vector<float, 4>;
 template struct Vector<double, 2>;
 template struct Vector<double, 3>;
 template struct Vector<double, 4>;
-} // namespace Math
+} // namespace math

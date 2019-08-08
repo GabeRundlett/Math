@@ -1,12 +1,13 @@
 #pragma once
 
-namespace Math {
+namespace math {
 template <typename T, int N> struct Vector;
 
 template <typename T> struct Vector<T, 2> {
     T x, y;
 
-	constexpr static Vector<T, 2> normalize(const Vector<T, 2> &v);
+    constexpr static float length(const Vector<T, 2> &v);
+    constexpr static Vector<T, 2> normalize(const Vector<T, 2> &v);
 
     constexpr Vector<T, 2> &operator+=(const Vector<T, 2> &v);
     constexpr Vector<T, 2> &operator-=(const Vector<T, 2> &v);
@@ -52,4 +53,4 @@ template <> struct Vector<unsigned char, 4> {
     constexpr Vector(unsigned char r, unsigned char g, unsigned char b, unsigned char a) : r(r), g(g), b(b), a(a) {}
     constexpr Vector(unsigned int hex) : r(char(hex >> 24)), g(char(hex >> 16)), b(char(hex >> 8)), a(char(hex >> 0)) {}
 };
-} // namespace Math
+} // namespace math

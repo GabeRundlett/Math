@@ -1,43 +1,43 @@
 #pragma once
 
-#include "Complex.hpp"
-#include "Matrix.hpp"
-#include "Vector.hpp"
+#include "complex.hpp"
+#include "matrix.hpp"
+#include "vector.hpp"
 
 #ifndef _CONFIG_MATH_NO_TYPEDEF
-namespace Math {
+namespace math {
 ////////////////////////////////////
 //                                //
 //             Vector             //
 //                                //
 ////////////////////////////////////
-typedef Vector<float, 2> vec2;
-typedef Vector<float, 3> vec3;
-typedef Vector<float, 4> vec4;
+typedef Vector<float, 2> Vec2;
+typedef Vector<float, 3> Vec3;
+typedef Vector<float, 4> Vec4;
 
-typedef Vector<double, 2> dvec2;
-typedef Vector<double, 3> dvec3;
-typedef Vector<double, 4> dvec4;
+typedef Vector<double, 2> dVec2;
+typedef Vector<double, 3> dVec3;
+typedef Vector<double, 4> dVec4;
 
-typedef Vector<int, 2> ivec2;
-typedef Vector<int, 3> ivec3;
-typedef Vector<int, 4> ivec4;
+typedef Vector<int, 2> iVec2;
+typedef Vector<int, 3> iVec3;
+typedef Vector<int, 4> iVec4;
 
-typedef Vector<unsigned char, 4> color;
+typedef Vector<unsigned char, 4> Color;
 ////////////////////////////////////
 //                                //
 //             Matrix             //
 //                                //
 ////////////////////////////////////
-typedef Matrix<float, 2, 2> mat2;
-typedef Matrix<float, 3, 3> mat3;
-typedef Matrix<float, 4, 4> mat4;
+typedef Matrix<float, 2, 2> Mat2;
+typedef Matrix<float, 3, 3> Mat3;
+typedef Matrix<float, 4, 4> Mat4;
 ////////////////////////////////////
 //                                //
 //             Complex            //
 //                                //
 ////////////////////////////////////
-typedef Complex<float, 2> comp;
-typedef Complex<float, 4> quat;
-} // namespace Math
+typedef Complex<float, 2> Comp;
+typedef Complex<float, 4> Quat;
+} // namespace math
 #endif

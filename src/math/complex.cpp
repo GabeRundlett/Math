@@ -1,8 +1,8 @@
-#include "Complex.hpp"
+#include "complex.hpp"
 
 #define SQ(x) (x * x)
 
-namespace Math {
+namespace math {
 ////////////////////////////////////
 //                                //
 //            Complex2            //
@@ -25,9 +25,9 @@ template <typename T> inline Complex<T, 2> &Complex<T, 2>::operator*=(const Comp
     return *this;
 }
 template <typename T> inline Complex<T, 2> &Complex<T, 2>::operator/=(const Complex<T, 2> &c) {
-    const T tr = r, rmagSQ = SQ(c.r) + SQ(c.i);
-    r = r * c.r / rmagSQ + i * c.i / rmagSQ;
-    i = i * c.r / rmagSQ - tr * c.i / rmagSQ;
+    const T tr = r, mag2 = SQ(c.r) + SQ(c.i);
+    r = r * c.r / mag2 + i * c.i / mag2;
+    i = i * c.r / mag2 - tr * c.i / mag2;
     return *this;
 }
 template <typename T> inline Complex<T, 2> Complex<T, 2>::operator+(const Complex<T, 2> &c) { return {r + c.r, i + c.i}; }
@@ -36,8 +36,8 @@ template <typename T> inline Complex<T, 2> Complex<T, 2>::operator*(const Comple
     return {r * c.r - i * c.i, r * c.i + i * c.r};
 }
 template <typename T> inline Complex<T, 2> Complex<T, 2>::operator/(const Complex<T, 2> &c) {
-    const T rmagSQ = SQ(c.r) + SQ(c.i);
-    return {r * c.r / rmagSQ + i * c.i / rmagSQ, i * c.r / rmagSQ - r * c.i / rmagSQ};
+    const T mag2 = SQ(c.r) + SQ(c.i);
+    return {r * c.r / mag2 + i * c.i / mag2, i * c.r / mag2 - r * c.i / mag2};
 }
 template <typename T> T &Complex<T, 2>::operator[](int index) const { return *((T *)this + index); }
 ////////////////////////////////////
@@ -68,11 +68,11 @@ template <typename T> inline Complex<T, 4> &Complex<T, 4>::operator*=(const Comp
     return *this;
 }
 template <typename T> inline Complex<T, 4> &Complex<T, 4>::operator/=(const Complex<T, 4> &c) {
-    const T tr = r, ti = i, tj = j, rmagSQ = SQ(c.r) + SQ(c.i) + SQ(c.j) + SQ(c.k);
-    r = r * c.r / rmagSQ + i * c.i / rmagSQ + j * c.j / rmagSQ + k * c.k / rmagSQ;
-    i = i * c.r / rmagSQ - j * c.k / rmagSQ + k * c.j / rmagSQ - tr * c.i / rmagSQ;
-    j = ti * c.k / rmagSQ + j * c.r / rmagSQ - k * c.i / rmagSQ - tr * c.j / rmagSQ;
-    k = tj * c.i / rmagSQ + k * c.r / rmagSQ - tr * c.k / rmagSQ - ti * c.j / rmagSQ;
+    const T tr = r, ti = i, tj = j, mag2 = SQ(c.r) + SQ(c.i) + SQ(c.j) + SQ(c.k);
+    r = r * c.r / mag2 + i * c.i / mag2 + j * c.j / mag2 + k * c.k / mag2;
+    i = i * c.r / mag2 - j * c.k / mag2 + k * c.j / mag2 - tr * c.i / mag2;
+    j = ti * c.k / mag2 + j * c.r / mag2 - k * c.i / mag2 - tr * c.j / mag2;
+    k = tj * c.i / mag2 + k * c.r / mag2 - tr * c.k / mag2 - ti * c.j / mag2;
     return *this;
 }
 template <typename T> inline Complex<T, 4> Complex<T, 4>::operator+(const Complex<T, 4> &c) {
@@ -86,15 +86,14 @@ template <typename T> inline Complex<T, 4> Complex<T, 4>::operator*(const Comple
             r * c.k + i * c.j - j * c.i + k * c.r};
 }
 template <typename T> inline Complex<T, 4> Complex<T, 4>::operator/(const Complex<T, 4> &c) {
-
-    const T rmagSQ = SQ(c.r) + SQ(c.i) + SQ(c.j) + SQ(c.k);
-    return {r * c.r / rmagSQ + i * c.i / rmagSQ + j * c.j / rmagSQ + k * c.k / rmagSQ,
-            i * c.r / rmagSQ - j * c.k / rmagSQ + k * c.j / rmagSQ - r * c.i / rmagSQ,
-            i * c.k / rmagSQ + j * c.r / rmagSQ - k * c.i / rmagSQ - r * c.j / rmagSQ,
-            j * c.i / rmagSQ + k * c.r / rmagSQ - r * c.k / rmagSQ - i * c.j / rmagSQ};
+    const T mag2 = SQ(c.r) + SQ(c.i) + SQ(c.j) + SQ(c.k);
+    return {r * c.r / mag2 + i * c.i / mag2 + j * c.j / mag2 + k * c.k / mag2,
+            i * c.r / mag2 - j * c.k / mag2 + k * c.j / mag2 - r * c.i / mag2,
+            i * c.k / mag2 + j * c.r / mag2 - k * c.i / mag2 - r * c.j / mag2,
+            j * c.i / mag2 + k * c.r / mag2 - r * c.k / mag2 - i * c.j / mag2};
 }
 template <typename T> T &Complex<T, 4>::operator[](int index) const { return *((T *)this + index); }
 
 template struct Complex<float, 2>;
 template struct Complex<float, 4>;
-} // namespace Math
+} // namespace math
