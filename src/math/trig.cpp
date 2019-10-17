@@ -37,82 +37,74 @@ namespace _internal {
     if (x < 0.0) {                                                                                                             \
         x *= -1.0;                                                                                                             \
         if (tmod_tau(x) > PI) {                                                                                                \
-            if (tmod_pi(x) > HALF_PI)                                                                                          \
-                return -function(-x);                                                                                          \
+            if (tmod_pi(x) > HALF_PI) return -function(-x);                                                                    \
             return function(x);                                                                                                \
         } else if (tmod_pi(x) > HALF_PI)                                                                                       \
             return function(-x);                                                                                               \
         return -function(x);                                                                                                   \
     }                                                                                                                          \
     if (tmod_tau(x) > PI) {                                                                                                    \
-        if (tmod_pi(x) > HALF_PI)                                                                                              \
-            return function(-x);                                                                                               \
+        if (tmod_pi(x) > HALF_PI) return function(-x);                                                                         \
         return -function(x);                                                                                                   \
     } else if (tmod_pi(x) > HALF_PI)                                                                                           \
         return -function(-x);                                                                                                  \
     return function(x)
 
 #define COSINE_IMPL_SWITCH(function, tmod_pi, tmod_tau)                                                                        \
-    if (x < 0.0)                                                                                                               \
-        x *= -1.0;                                                                                                             \
+    if (x < 0.0) x *= -1.0;                                                                                                    \
     if (tmod_tau(x) > PI) {                                                                                                    \
-        if (tmod_pi(x) > HALF_PI)                                                                                              \
-            return function(x);                                                                                                \
+        if (tmod_pi(x) > HALF_PI) return function(x);                                                                          \
         return function(-x);                                                                                                   \
     } else if (tmod_pi(x) > HALF_PI)                                                                                           \
         return -function(x);                                                                                                   \
-    if (x == 0.0)                                                                                                              \
-        return 1.0;                                                                                                            \
+    if (x == 0.0) return 1.0;                                                                                                  \
     return -function(-x)
 
 #define TANGENT_IMPL_SWITCH(function, tmod_pi, tmod_tau)                                                                       \
     if (x < 0.0) {                                                                                                             \
         x *= -1.0;                                                                                                             \
         if (tmod_tau(x) > PI) {                                                                                                \
-            if (tmod_pi(x) > HALF_PI)                                                                                          \
-                return -function(-x) / function(x);                                                                            \
+            if (tmod_pi(x) > HALF_PI) return -function(-x) / function(x);                                                      \
             return function(x) / function(-x);                                                                                 \
         } else if (tmod_pi(x) > HALF_PI)                                                                                       \
             return function(-x) / -function(x);                                                                                \
-        if (x == 0.0)                                                                                                          \
-            return -function(x);                                                                                               \
+        if (x == 0.0) return -function(x);                                                                                     \
         return function(x) / function(-x);                                                                                     \
     }                                                                                                                          \
     if (tmod_tau(x) > PI) {                                                                                                    \
-        if (tmod_pi(x) > HALF_PI)                                                                                              \
-            return function(-x) / function(x);                                                                                 \
+        if (tmod_pi(x) > HALF_PI) return function(-x) / function(x);                                                           \
         return -function(x) / function(-x);                                                                                    \
     } else if (tmod_pi(x) > HALF_PI)                                                                                           \
         return function(-x) / function(x);                                                                                     \
-    if (x == 0.0)                                                                                                              \
-        return function(x);                                                                                                    \
+    if (x == 0.0) return function(x);                                                                                          \
     return function(x) / -function(-x)
 
-constexpr static inline float trig_fast(float x) {
-    x = FMOD_HALF_PI(x);
-    const float x2 = x * x;
-    return x * (1.f + x2 * ((float)ONE_OVER_3F + x2 * ((float)ONE_OVER_5F + x2 * (float)ONE_OVER_7F)));
-}
+    constexpr static inline float trig_fast(float x) {
+        x = FMOD_HALF_PI(x);
+        const float x2 = x * x;
+        return x * (1.f + x2 * ((float)ONE_OVER_3F + x2 * ((float)ONE_OVER_5F + x2 * (float)ONE_OVER_7F)));
+    }
 
-constexpr static inline double trig(double x) {
-    x = DMOD_HALF_PI(x);
-    const double x2 = x * x;
-    return x * (1.0 +
+    constexpr static inline double trig(double x) {
+        x = DMOD_HALF_PI(x);
+        const double x2 = x * x;
+        return x *
+               (1.0 +
                 x2 * (ONE_OVER_3F +
                       x2 * (ONE_OVER_5F +
                             x2 * (ONE_OVER_7F +
                                   x2 * (ONE_OVER_9F + x2 * (ONE_OVER_11F +
                                                             x2 * (ONE_OVER_13F + x2 * (ONE_OVER_15F + x2 * ONE_OVER_17F))))))));
-}
+    }
 } // namespace _internal
 
 namespace math {
-double sin(double x) { SINE_IMPL_SWITCH(_internal::trig, DMOD_PI, DMOD_TAU); }
-float sin(float x) { SINE_IMPL_SWITCH(_internal::trig_fast, FMOD_PI, FMOD_TAU); }
+    double sin(double x) { SINE_IMPL_SWITCH(_internal::trig, DMOD_PI, DMOD_TAU); }
+    float sin(float x) { SINE_IMPL_SWITCH(_internal::trig_fast, FMOD_PI, FMOD_TAU); }
 
-double cos(double x) { COSINE_IMPL_SWITCH(_internal::trig, DMOD_PI, DMOD_TAU); }
-float cos(float x) { COSINE_IMPL_SWITCH(_internal::trig_fast, FMOD_PI, FMOD_TAU); }
+    double cos(double x) { COSINE_IMPL_SWITCH(_internal::trig, DMOD_PI, DMOD_TAU); }
+    float cos(float x) { COSINE_IMPL_SWITCH(_internal::trig_fast, FMOD_PI, FMOD_TAU); }
 
-double tan(double x) { TANGENT_IMPL_SWITCH(_internal::trig, DMOD_PI, DMOD_TAU); }
-float tan(float x) { TANGENT_IMPL_SWITCH(_internal::trig_fast, FMOD_PI, FMOD_TAU); }
+    double tan(double x) { TANGENT_IMPL_SWITCH(_internal::trig, DMOD_PI, DMOD_TAU); }
+    float tan(float x) { TANGENT_IMPL_SWITCH(_internal::trig_fast, FMOD_PI, FMOD_TAU); }
 } // namespace math
