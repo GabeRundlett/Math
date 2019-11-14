@@ -96,14 +96,14 @@ namespace math {
     static inline constexpr float tan(float x) { TANGENT_IMPL_SWITCH(_internal::trig_fast, FMOD_PI, FMOD_TAU); }
 } // namespace math
 
-#undef DMOD(x, m)
-#undef DMOD_PI(x)
-#undef DMOD_TAU(x)
-#undef DMOD_HALF_PI(x)
-#undef FMOD_PI(x)
-#undef FMOD_TAU(x)
-#undef FMOD_HALF_PI(x)
+#undef DMOD
+#undef DMOD_PI
+#undef DMOD_TAU
+#undef DMOD_HALF_PI
+#undef FMOD_PI
+#undef FMOD_TAU
+#undef FMOD_HALF_PI
 
-#undef SINE_IMPL_SWITCH(function, tmod_pi, tmod_tau)
-#undef COSINE_IMPL_SWITCH(function, tmod_pi, tmod_tau)
-#undef TANGENT_IMPL_SWITCH(function, tmod_pi, tmod_tau)
+#undef SINE_IMPL_SWITCH
+#undef COSINE_IMPL_SWITCH
+#undef TANGENT_IMPL_SWITCH

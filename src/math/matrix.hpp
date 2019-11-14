@@ -36,15 +36,15 @@ namespace math {
         constexpr Matrix(const Vector<T, 4> &v1, const Vector<T, 4> &v2, const Vector<T, 4> &v3, const Vector<T, 4> &v4)
             : data{v1, v2, v3, v4} {}
 
-        static inline constexpr auto &operator+=(const Matrix<T, 4, 4> &m) {
+        inline constexpr auto &operator+=(const Matrix<T, 4, 4> &m) {
             data[0] += m.data[0], data[1] += m.data[1], data[2] += m.data[2], data[3] += m.data[3];
             return *this;
         }
-        static inline constexpr auto &operator-=(const Matrix<T, 4, 4> &m) {
+        inline constexpr auto &operator-=(const Matrix<T, 4, 4> &m) {
             data[0] -= m.data[0], data[1] -= m.data[1], data[2] -= m.data[2], data[3] -= m.data[3];
             return *this;
         }
-        static inline constexpr auto &operator*=(const Matrix<T, 4, 4> &m) {
+        inline constexpr auto &operator*=(const Matrix<T, 4, 4> &m) {
             Matrix<T, 4, 4> result(
                 {data[0][0] * m.data[0][0] + data[1][0] * m.data[0][1] + data[2][0] * m.data[0][2] + data[3][0] * m.data[0][3],
                  data[0][0] * m.data[1][0] + data[1][0] * m.data[1][1] + data[2][0] * m.data[1][2] + data[3][0] * m.data[1][3],

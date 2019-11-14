@@ -45,7 +45,7 @@ namespace math {
             return *this;
         }
         inline constexpr auto &operator[](const unsigned int index) const { return *(static_cast<T *>(this) + index); }
-        inline constexpr auto dot(const Vector<T, 4> &c) const { return r * c.r + i * c.i; }
+        inline constexpr auto dot(const Complex<T, 4> &c) const { return r * c.r + i * c.i; }
         inline constexpr auto length() const { return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y))); }
         inline constexpr auto &normalize() {
             T factor = static_cast<T>(1) / length();
@@ -118,7 +118,7 @@ namespace math {
             return *this;
         }
         inline constexpr auto &operator[](const unsigned int index) const { return *(static_cast<T *>(this) + index); }
-        inline constexpr auto dot(const Vector<T, 4> &c) const { return r * c.r + i * c.i + j * c.j + k * c.k; }
+        inline constexpr auto dot(const Complex<T, 4> &c) const { return r * c.r + i * c.i + j * c.j + k * c.k; }
         inline constexpr auto length() const {
             return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y) + sq(j) + sq(k)));
         }
