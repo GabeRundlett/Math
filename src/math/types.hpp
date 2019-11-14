@@ -4,7 +4,7 @@
 #include "matrix.hpp"
 #include "vector.hpp"
 
-#ifndef _CONFIG_MATH_NO_TYPEDEF
+#ifndef CONFIG_MATH_NO_TYPEDEF
 namespace math {
     ////////////////////////////////////
     //                                //
@@ -15,13 +15,13 @@ namespace math {
     typedef Vector<float, 3> Vec3;
     typedef Vector<float, 4> Vec4;
 
-    typedef Vector<double, 2> dVec2;
-    typedef Vector<double, 3> dVec3;
-    typedef Vector<double, 4> dVec4;
+    typedef Vector<double, 2> Vec2d;
+    typedef Vector<double, 3> Vec3d;
+    typedef Vector<double, 4> Vec4d;
 
-    typedef Vector<int, 2> iVec2;
-    typedef Vector<int, 3> iVec3;
-    typedef Vector<int, 4> iVec4;
+    typedef Vector<int, 2> Vec2i;
+    typedef Vector<int, 3> Vec3i;
+    typedef Vector<int, 4> Vec4i;
 
     typedef Vector<unsigned char, 4> Color;
     ////////////////////////////////////
