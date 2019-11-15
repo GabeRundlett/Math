@@ -11,10 +11,15 @@
 #endif
 
 namespace math {
-    template <typename T, int N> struct Vector;
+    template <typename T, int N> struct Vector { T data[N]; };
 
     template <typename T> struct Vector<T, 2> {
-        T x, y;
+        union {
+            T data[2];
+            struct {
+                T x, y;
+            };
+        };
 
         inline constexpr auto operator+(const Vector<T, 2> &v) const { return Vector<T, 2>{x + v.x, y + v.y}; }
         inline constexpr auto operator-(const Vector<T, 2> &v) const { return Vector<T, 2>{x - v.x, y - v.y}; }
@@ -46,7 +51,7 @@ namespace math {
             x /= a, y /= a;
             return *this;
         }
-        inline constexpr auto &operator[](const unsigned int index) const { return *(reinterpret_cast<T *>(this) + index); }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Vector<T, 2> &v) const { return x * v.x + y * v.y; }
         inline constexpr auto length() const { return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y))); }
         inline constexpr auto &normalize() {
@@ -57,8 +62,12 @@ namespace math {
     };
 
     template <typename T> struct Vector<T, 3> {
-        T x, y, z;
-
+        union {
+            T data[3];
+            struct {
+                T x, y, z;
+            };
+        };
         inline constexpr auto operator+(const Vector<T, 3> &v) const { return Vector<T, 3>{x + v.x, y + v.y, z + v.z}; }
         inline constexpr auto operator-(const Vector<T, 3> &v) const { return Vector<T, 3>{x - v.x, y - v.y, z - v.z}; }
         inline constexpr auto operator*(const Vector<T, 3> &v) const { return Vector<T, 3>{x * v.x, y * v.y, z * v.z}; }
@@ -89,8 +98,11 @@ namespace math {
             x /= a, y /= a, z /= a;
             return *this;
         }
-        inline constexpr auto &operator[](const unsigned int index) const { return *(reinterpret_cast<T *>(this) + index); }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Vector<T, 3> &v) const { return x * v.x + y * v.y + z * v.z; }
+        inline constexpr auto cross(const Vector<T, 3> &v) const {
+            return Vector<T, 3>{y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x};
+        }
         inline constexpr auto length() const { return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y) + sq(z))); }
         inline constexpr auto &normalize() {
             T factor = static_cast<T>(1) / length();
@@ -100,8 +112,12 @@ namespace math {
     };
 
     template <typename T> struct Vector<T, 4> {
-        T x, y, z, w;
-
+        union {
+            T data[4];
+            struct {
+                T x, y, z, w;
+            };
+        };
         inline constexpr auto operator+(const Vector<T, 4> &v) const {
             return Vector<T, 4>{x + v.x, y + v.y, z + v.z, w + v.w};
         }
@@ -140,7 +156,7 @@ namespace math {
             x /= a, y /= a, z /= a, w /= a;
             return *this;
         }
-        inline constexpr auto &operator[](const unsigned int index) const { return *(reinterpret_cast<T *>(this) + index); }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Vector<T, 4> &v) const { return x * v.x + y * v.y + z * v.z + w * v.w; }
         inline constexpr auto length() const {
             return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y) + sq(z) + sq(w)));

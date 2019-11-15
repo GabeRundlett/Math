@@ -4,7 +4,12 @@ namespace math {
     template <typename T, int N> struct Complex;
 
     template <typename T> struct Complex<T, 2> {
-        T r, i;
+        union {
+            T data[2];
+            struct {
+                T r, i;
+            };
+        };
 
         inline constexpr auto operator+(const Complex<T, 4> &c) const { return Complex<T, 4>{r + c.r, i + c.i}; }
         inline constexpr auto operator-(const Complex<T, 4> &c) const { return Complex<T, 4>{r - c.r, i - c.i}; }
@@ -44,7 +49,7 @@ namespace math {
             r /= a, i /= a;
             return *this;
         }
-        inline constexpr auto &operator[](const unsigned int index) const { return *(static_cast<T *>(this) + index); }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Complex<T, 4> &c) const { return r * c.r + i * c.i; }
         inline constexpr auto length() const { return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y))); }
         inline constexpr auto &normalize() {
@@ -55,7 +60,12 @@ namespace math {
     };
 
     template <typename T> struct Complex<T, 4> {
-        T r, i, j, k;
+        union {
+            T data[4];
+            struct {
+                T r, i, j, k;
+            };
+        };
 
         inline constexpr auto operator+(const Complex<T, 4> &c) const {
             return Complex<T, 4>{r + c.r, i + c.i, j + c.j, k + c.k};
@@ -117,7 +127,7 @@ namespace math {
             r /= a, i /= a, j /= a, k /= a;
             return *this;
         }
-        inline constexpr auto &operator[](const unsigned int index) const { return *(static_cast<T *>(this) + index); }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Complex<T, 4> &c) const { return r * c.r + i * c.i + j * c.j + k * c.k; }
         inline constexpr auto length() const {
             return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y) + sq(j) + sq(k)));

@@ -11,9 +11,7 @@ namespace math {
         constexpr Matrix(const Matrix<T, 2, 2> &m) : data{m.data[0], m.data[1]} {}
         constexpr Matrix(const Vector<T, 2> &v1, const Vector<T, 2> &v2) : data{v1, v2} {}
 
-        inline constexpr auto &operator[](const unsigned int index) const {
-            return *(static_cast<Vector<T, 2> *>(this) + index);
-        }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
     };
 
     template <typename T> struct Matrix<T, 3, 3> {
@@ -23,9 +21,7 @@ namespace math {
         constexpr Matrix(const Matrix<T, 3, 3> &m) : data{m.data[0], m.data[1], m.data[2]} {}
         constexpr Matrix(const Vector<T, 3> &v1, const Vector<T, 3> &v2, const Vector<T, 3> &v3) : data{v1, v2, v3} {}
 
-        inline constexpr auto &operator[](const unsigned int index) const {
-            return *(static_cast<Vector<T, 3> *>(this) + index);
-        }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
     };
 
     template <typename T> struct Matrix<T, 4, 4> {
@@ -66,9 +62,7 @@ namespace math {
             *this = result;
             return *this;
         }
-        inline constexpr auto &operator[](const unsigned int index) const {
-            return *(static_cast<Vector<T, 4> *>(this) + index);
-        }
+        inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
 
         static inline constexpr auto ortho(T l, T r, T b, T t, T n, T f) {
             return Matrix<T, 4, 4>{{(T)2 / (r - l), 0, 0, 0},
