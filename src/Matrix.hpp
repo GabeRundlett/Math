@@ -1,7 +1,8 @@
 #pragma once
-#include "vector.hpp"
 
-namespace math {
+#include "Vector.hpp"
+
+namespace Math {
     template <typename T, int Rows, int Cols> struct Matrix;
 
     template <typename T> struct Matrix<T, 2, 2> {
@@ -84,4 +85,4 @@ namespace math {
             return Matrix<T, 4, 4>{{factor.x, 0, 0, 0}, {0, factor.y, 0, 0}, {0, 0, factor.z, 0}, {0, 0, 0, 1}};
         }
     };
-} // namespace math
+} // namespace Math

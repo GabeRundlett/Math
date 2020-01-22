@@ -1,11 +1,11 @@
 #pragma once
 
-#include "complex.hpp"
-#include "matrix.hpp"
-#include "vector.hpp"
+#include "Complex.hpp"
+#include "Matrix.hpp"
+#include "Vector.hpp"
 
 #ifndef CONFIG_MATH_NO_TYPEDEF
-namespace math {
+namespace Math {
     ////////////////////////////////////
     //                                //
     //             Vector             //
@@ -39,5 +39,5 @@ namespace math {
     ////////////////////////////////////
     typedef Complex<float, 2> Comp;
     typedef Complex<float, 4> Quat;
-} // namespace math
+} // namespace Math
 #endif

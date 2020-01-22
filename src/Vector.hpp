@@ -1,16 +1,16 @@
 #pragma once
 
-#include "common.hpp"
+#include "Common.hpp"
 
 #ifdef __linux__
-#define INTERNAL_MATH_SQUARE_ROOT_FUNC __builtin_sqrt
+#define MATH_INTERNAL_SQRT __builtin_sqrt
 #endif
-#ifndef INTERNAL_MATH_SQUARE_ROOT_FUNC
+#ifndef MATH_INTERNAL_SQRT
 #include <cmath>
-#define INTERNAL_MATH_SQUARE_ROOT_FUNC ::std::sqrt
+#define MATH_INTERNAL_SQRT ::std::sqrt
 #endif
 
-namespace math {
+namespace Math {
     template <typename T, int N> struct Vector { T data[N]; };
 
     template <typename T> struct Vector<T, 2> {
@@ -53,7 +53,7 @@ namespace math {
         }
         inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Vector<T, 2> &v) const { return x * v.x + y * v.y; }
-        inline constexpr auto length() const { return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y))); }
+        inline constexpr auto length() const { return static_cast<T>(MATH_INTERNAL_SQRT(sq(x) + sq(y))); }
         inline constexpr auto &normalize() {
             T factor = static_cast<T>(1) / length();
             x *= factor, y *= factor;
@@ -103,7 +103,7 @@ namespace math {
         inline constexpr auto cross(const Vector<T, 3> &v) const {
             return Vector<T, 3>{y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x};
         }
-        inline constexpr auto length() const { return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y) + sq(z))); }
+        inline constexpr auto length() const { return static_cast<T>(MATH_INTERNAL_SQRT(sq(x) + sq(y) + sq(z))); }
         inline constexpr auto &normalize() {
             T factor = static_cast<T>(1) / length();
             x *= factor, y *= factor, z *= factor;
@@ -158,9 +158,7 @@ namespace math {
         }
         inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Vector<T, 4> &v) const { return x * v.x + y * v.y + z * v.z + w * v.w; }
-        inline constexpr auto length() const {
-            return static_cast<T>(INTERNAL_MATH_SQUARE_ROOT_FUNC(sq(x) + sq(y) + sq(z) + sq(w)));
-        }
+        inline constexpr auto length() const { return static_cast<T>(MATH_INTERNAL_SQRT(sq(x) + sq(y) + sq(z) + sq(w))); }
         inline constexpr auto &normalize() {
             T factor = static_cast<T>(1) / length();
             x *= factor, y *= factor, z *= factor, w *= factor;
@@ -175,4 +173,4 @@ namespace math {
             : r(static_cast<unsigned char>(hex >> 24)), g(static_cast<unsigned char>(hex >> 16)),
               b(static_cast<unsigned char>(hex >> 8)), a(static_cast<unsigned char>(hex >> 0)) {}
     };
-} // namespace math
+} // namespace Math

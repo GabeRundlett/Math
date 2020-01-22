@@ -1,6 +1,6 @@
 #pragma once
 
-namespace math {
+namespace Math {
     template <typename T, int N> struct Complex;
 
     template <typename T> struct Complex<T, 2> {
@@ -140,4 +140,4 @@ namespace math {
             return *this;
         }
     };
-} // namespace math
+} // namespace Math
