@@ -1,4 +1,4 @@
 #pragma once
 
-#include "Trig.hpp"
-#include "Types.hpp"
+#include <Math/Trig.hpp>
+#include <Math/Types.hpp>

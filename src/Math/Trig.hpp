@@ -71,7 +71,7 @@ namespace Math {
             return trigSeries(-x);
         } else if (modPi<Precision>(x) > HALF_PI)
             return -trigSeries(x);
-        if (x == 0) return 1;
+        if (x == 0) return static_cast<Precision>(1);
         return -trigSeries(-x);
     }
 
