@@ -9,8 +9,8 @@ namespace Math {
         return static_cast<PrecisionOut>(1) / val;
     }
 
-    template <unsigned long long Constant> static constexpr auto FACTORIAL = Constant *FACTORIAL<Constant - 1>;
-    template <> constexpr auto FACTORIAL<0> = 1;
+    template <unsigned long long Constant> inline constexpr unsigned long long factorial() { return factorial<Constant - 1>(); }
+    template <> inline constexpr unsigned long long factorial<0>() { return 1; }
 
     template <typename PrecisionOut, typename PrecisionInX, typename PrecisionInM>
     static inline constexpr auto modulo(const PrecisionInX x, const PrecisionInM m) {

@@ -9,9 +9,9 @@ namespace Math {
         const auto x2 = sq(x);
         // clang-format off
         return x * (1.f -
-            x2 * (oneOver<float>(FACTORIAL<3>) +
-            x2 * (oneOver<float>(FACTORIAL<5>) -
-            x2 * (oneOver<float>(FACTORIAL<7>)
+            x2 * (oneOver<float>(factorial<3>()) +
+            x2 * (oneOver<float>(factorial<5>()) -
+            x2 * (oneOver<float>(factorial<7>())
             )))); // clang-format on
     }
     template <> inline constexpr double trigSeries<double>(double x) {
@@ -19,13 +19,13 @@ namespace Math {
         const auto x2 = sq(x);
         // clang-format off
         return x * (1.0 -
-            x2 * (oneOver<double>(FACTORIAL<3>) +
-            x2 * (oneOver<double>(FACTORIAL<5>) -
-            x2 * (oneOver<double>(FACTORIAL<7>) +
-            x2 * (oneOver<double>(FACTORIAL<11>) -
-            x2 * (oneOver<double>(FACTORIAL<13>) +
-            x2 * (oneOver<double>(FACTORIAL<15>) -
-            x2 * (oneOver<double>(FACTORIAL<17>)
+            x2 * (oneOver<double>(factorial<3>()) +
+            x2 * (oneOver<double>(factorial<5>()) -
+            x2 * (oneOver<double>(factorial<7>()) +
+            x2 * (oneOver<double>(factorial<11>()) -
+            x2 * (oneOver<double>(factorial<13>()) +
+            x2 * (oneOver<double>(factorial<15>()) -
+            x2 * (oneOver<double>(factorial<17>())
             )))))))); // clang-format on
     }
     template <> inline constexpr long double trigSeries<long double>(long double x) {
@@ -33,17 +33,17 @@ namespace Math {
         const auto x2 = sq(x);
         // clang-format off
         return x * (1.0L - 
-            x2 * (oneOver<long double>(FACTORIAL<3>) +
-            x2 * (oneOver<long double>(FACTORIAL<5>) -
-            x2 * (oneOver<long double>(FACTORIAL<7>) +
-            x2 * (oneOver<long double>(FACTORIAL<11>) -
-            x2 * (oneOver<long double>(FACTORIAL<13>) +
-            x2 * (oneOver<long double>(FACTORIAL<15>) -
-            x2 * (oneOver<long double>(FACTORIAL<17>) +
-            x2 * (oneOver<long double>(FACTORIAL<19>) -
-            x2 * (oneOver<long double>(FACTORIAL<21>) +
-            x2 * (oneOver<long double>(FACTORIAL<23>) -
-            x2 * (oneOver<long double>(FACTORIAL<25>)
+            x2 * (oneOver<long double>(factorial<3>()) +
+            x2 * (oneOver<long double>(factorial<5>()) -
+            x2 * (oneOver<long double>(factorial<7>()) +
+            x2 * (oneOver<long double>(factorial<11>()) -
+            x2 * (oneOver<long double>(factorial<13>()) +
+            x2 * (oneOver<long double>(factorial<15>()) -
+            x2 * (oneOver<long double>(factorial<17>()) +
+            x2 * (oneOver<long double>(factorial<19>()) -
+            x2 * (oneOver<long double>(factorial<21>()) +
+            x2 * (oneOver<long double>(factorial<23>()) -
+            x2 * (oneOver<long double>(factorial<25>())
             )))))))))))); // clang-format on
     }
 
