@@ -54,6 +54,7 @@ namespace Math {
         inline constexpr auto &operator[](const unsigned int index) const { return data[index]; }
         inline constexpr auto dot(const Vector<T, 2> &v) const { return x * v.x + y * v.y; }
         inline constexpr auto length() const { return static_cast<T>(MATH_INTERNAL_SQRT(sq(x) + sq(y))); }
+        inline constexpr auto lengthSq() const { return sq(x) + sq(y); }
         inline constexpr auto &normalize() {
             T factor = static_cast<T>(1) / length();
             x *= factor, y *= factor;
