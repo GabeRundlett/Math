@@ -9,7 +9,9 @@ namespace Math {
         return static_cast<PrecisionOut>(static_cast<PrecisionOut>(1) / val);
     }
 
-    template <unsigned long long Constant> inline constexpr unsigned long long factorial() { return factorial<Constant - 1>(); }
+    template <unsigned long long Constant> inline constexpr unsigned long long factorial() {
+        return Constant * factorial<Constant - 1>();
+    }
     template <> inline constexpr unsigned long long factorial<0>() { return 1; }
 
     template <typename PrecisionOut, typename PrecisionInX, typename PrecisionInM>
